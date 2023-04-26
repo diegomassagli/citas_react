@@ -17,20 +17,15 @@ function App() {
   useEffect( () => {
     const obtenerLS = () => {
       const pacientesLS = JSON.parse(localStorage.getItem('pacientes')) ?? [];  // ?? devuelve el operador del lado derecho cuando el lado izquierdo es nulo o undefined
-console.log(pacientesLS)
       setPacientes(pacientesLS)
     }
-
     obtenerLS();  // llama a la funcion
   },[]);  // como no le puse dependencias, se va a ejecutar solo una vez, cuando el componente esta listo. ES IMPORTANTE EL ORDEN PORQUE ESTE LLENA pacientes !!
-
-
 
   // el localStorage no permite guardar arreglos, solo string !!   se ejecuta con altas, bajas, modificaciones etc
   useEffect( () => {
     localStorage.setItem('pacientes', JSON.stringify( pacientes ));
   }, [pacientes])
-
 
 
   const eliminarPaciente = id => {
@@ -44,17 +39,17 @@ console.log(pacientesLS)
   
       <Header />
       <div className="mt-12 md:flex">     
-      <Formulario 
-        pacientes={pacientes}
-        setPacientes={setPacientes}
-        paciente={paciente}
-        setPaciente={setPaciente}
-      />
-      <ListadoPacientes 
-        pacientes={pacientes}   
-        setPaciente = {setPaciente}    
-        eliminarPaciente={eliminarPaciente}
-      />
+        <Formulario 
+          pacientes={pacientes}
+          setPacientes={setPacientes}
+          paciente={paciente}
+          setPaciente={setPaciente}
+        />
+        <ListadoPacientes 
+          pacientes={pacientes}   
+          setPaciente = {setPaciente}    
+          eliminarPaciente={eliminarPaciente}
+        />
       </div>
 
     </div>
